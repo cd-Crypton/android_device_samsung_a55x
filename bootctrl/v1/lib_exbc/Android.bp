@@ -1,0 +1,33 @@
+cc_defaults {
+	name: "lib_exbc.v1.defaults",
+	srcs: [
+		"lib_exbc.cpp"
+	],
+	cflags: [
+		"-Wall",
+		"-Werror",
+	],
+	shared_libs: [
+		"liblog",
+		"libbase",
+		"libhidlbase",
+		"libhardware",
+		"libutils",
+		"android.hardware.boot@1.0",
+		"android.hardware.boot@1.1",
+		"android.hardware.boot@1.2",
+	],
+	export_include_dirs: [
+		"include",
+	],
+}
+
+cc_library_static {
+	name: "lib_exbc.v1",
+	defaults: [
+		"lib_exbc.v1.defaults",
+	],
+	relative_install_path: "hw",
+	vendor: true,
+	recovery_available: true,
+}
