@@ -1,0 +1,119 @@
+<!--
+    Input:
+        device/samsung/erd8845/manifest_ab.xml
+        device/samsung/erd8845/manifest_media_c2.xml
+        vendor/samsung/system/security/skeymaster/common/configs/rkp_skeymint_v300_manifest.xml
+        vendor/samsung/system/security/skeymaster/common/configs/gatekeeper_aidl_manifest.xml
+        vendor/samsung/interfaces/tlc/payment/1.0/manifest.xml
+        vendor/samsung/interfaces/tlc/blockchain/1.0/manifest.xml
+        vendor/samsung/interfaces/audio/manifest.xml
+        vendor/samsung/interfaces/gnss/aidl/aidl_manifest/manifest_gnss_aidl_IGnssV3_ISehGnssV3.xml
+-->
+<manifest version="2.0" type="device" target-level="8">
+    <hal format="hidl">
+        <name>android.hardware.audio</name>
+        <transport>hwbinder</transport>
+        <fqname>@7.1::IDevicesFactory/default</fqname>
+    </hal>
+    <hal format="hidl">
+        <name>android.hardware.audio.effect</name>
+        <transport>hwbinder</transport>
+        <fqname>@7.0::IEffectsFactory/default</fqname>
+    </hal>
+    <hal format="hidl">
+        <name>android.hardware.bluetooth</name>
+        <transport>hwbinder</transport>
+        <fqname>@1.1::IBluetoothHci/default</fqname>
+    </hal>
+    <hal format="aidl" override="true">
+        <name>android.hardware.gatekeeper</name>
+        <fqname>IGatekeeper/default</fqname>
+    </hal>
+    <hal format="aidl">
+        <name>android.hardware.gnss</name>
+        <version>3</version>
+        <fqname>IGnss/default</fqname>
+    </hal>
+    <hal format="aidl">
+        <name>android.hardware.graphics.allocator</name>
+        <fqname>IAllocator/default</fqname>
+    </hal>
+    <hal format="hidl">
+        <name>android.hardware.graphics.mapper</name>
+        <transport arch="32+64">passthrough</transport>
+        <fqname>@4.0::IMapper/default</fqname>
+    </hal>
+    <hal format="hidl">
+        <name>android.hardware.media.c2</name>
+        <transport>hwbinder</transport>
+        <fqname>@1.2::IComponentStore/default</fqname>
+    </hal>
+    <hal format="hidl">
+        <name>android.hardware.media.omx</name>
+        <transport>hwbinder</transport>
+        <fqname>@1.0::IOmx/default</fqname>
+        <fqname>@1.0::IOmxStore/default</fqname>
+    </hal>
+    <hal format="aidl" override="true">
+        <name>android.hardware.security.keymint</name>
+        <version>3</version>
+        <fqname>IKeyMintDevice/default</fqname>
+        <fqname>IRemotelyProvisionedComponent/default</fqname>
+    </hal>
+    <hal format="aidl" override="true">
+        <name>android.hardware.security.secureclock</name>
+        <fqname>ISecureClock/default</fqname>
+    </hal>
+    <hal format="aidl" override="true">
+        <name>android.hardware.security.sharedsecret</name>
+        <fqname>ISharedSecret/default</fqname>
+    </hal>
+    <hal format="hidl">
+        <name>android.hardware.soundtrigger</name>
+        <transport>hwbinder</transport>
+        <fqname>@2.3::ISoundTriggerHw/default</fqname>
+    </hal>
+    <hal format="hidl">
+        <name>vendor.samsung.hardware.audio</name>
+        <transport>hwbinder</transport>
+        <fqname>@1.0::ISehDevicesFactory/default</fqname>
+    </hal>
+    <hal format="hidl">
+        <name>vendor.samsung.hardware.bluetooth</name>
+        <transport>hwbinder</transport>
+        <fqname>@2.0::ISehBluetooth/default</fqname>
+    </hal>
+    <hal format="aidl">
+        <name>vendor.samsung.hardware.gnss</name>
+        <version>3</version>
+        <fqname>ISehGnss/default</fqname>
+    </hal>
+    <hal format="aidl">
+        <name>vendor.samsung.hardware.keymint</name>
+        <version>3</version>
+        <fqname>ISehKeyMintExtension/default</fqname>
+    </hal>
+    <hal format="aidl">
+        <name>vendor.samsung.hardware.keymint</name>
+        <version>3</version>
+        <fqname>ISehKeyMintFactory/default</fqname>
+    </hal>
+    <hal format="hidl">
+        <name>vendor.samsung.hardware.tlc.blockchain</name>
+        <transport>hwbinder</transport>
+        <fqname>@1.0::ISehBlockchain/default</fqname>
+    </hal>
+    <hal format="hidl">
+        <name>vendor.samsung.hardware.tlc.payment</name>
+        <transport>hwbinder</transport>
+        <fqname>@1.0::ISehTlcPayment/default</fqname>
+    </hal>
+    <hal format="hidl">
+        <name>vendor.samsung_slsi.hardware.SbwcDecompService</name>
+        <transport>hwbinder</transport>
+        <fqname>@1.0::ISbwcDecompService/default</fqname>
+    </hal>
+    <sepolicy>
+        <version>34.0</version>
+    </sepolicy>
+</manifest>
