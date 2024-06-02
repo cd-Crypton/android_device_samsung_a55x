@@ -1,0 +1,13 @@
+# Encryption
+ro.hardware.keystore=mdfpp
+ro.hardware.keystore_desede=true
+ro.security.keystore.keytype=sakv2,gak,rkp
+ro.crypto.volume.filenames_mode=aes-256-cts:v2
+ro.crypto.allow_encrypt_override=true
+ro.crypto.dm_default_key.options_format.version=2
+ro.crypto.volume.metadata.method=dm-default-key
+
+# USB
+ro.recovery.usb.adb.pid=D001
+ro.recovery.usb.fastboot.pid=4EE0
+ro.recovery.usb.vid=18D1

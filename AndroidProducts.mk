@@ -6,9 +6,9 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/omni_essi.mk
+    $(LOCAL_DIR)/twrp_a55x.mk
 
 COMMON_LUNCH_CHOICES := \
-    omni_essi-user \
-    omni_essi-userdebug \
-    omni_essi-eng
+    twrp_a55x-user \
+    twrp_a55x-userdebug \
+    twrp_a55x-eng

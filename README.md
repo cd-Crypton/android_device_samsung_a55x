@@ -1,10 +1,5 @@
-# Android device tree for samsung SM-A556E (essi)
-
-```
-#
-# Copyright (C) 2024 The Android Open Source Project
-# Copyright (C) 2024 SebaUbuntu's TWRP device tree generator
-#
-# SPDX-License-Identifier: Apache-2.0
-#
-```
+# Android device tree for samsung SM-A556B (a55)
+# Clone
+    git clone https://github.com/TheNoobDevs/custom_twrp_samsung_a55x.git -b twrp-12.1 device/samsung/a55x
+# Build
+    export ALLOW_MISSING_DEPENDENCIES=true; . build/envsetup.sh; lunch twrp_a55x-eng; mka vendorbootimage
