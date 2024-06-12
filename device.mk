@@ -7,6 +7,10 @@
 
 LOCAL_PATH := device/samsung/a55x
 
+# A/B
+AB_OTA_UPDATER := true
+TARGET_ENFORCE_AB_OTA_PARTITION_LIST := true
+
 # fastbootd
 PRODUCT_PACKAGES += \
     android.hardware.fastboot@1.1-impl-mock \
@@ -42,3 +46,11 @@ PRODUCT_PACKAGES += \
 
 # Partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
+
+# Shipping level
+PRODUCT_SHIPPING_API_LEVEL := 33
+PRODUCT_TARGET_VNDK_VERSION := 33
+
+# Soong namespaces
+PRODUCT_SOONG_NAMESPACES += \
+    $(LOCAL_PATH)
