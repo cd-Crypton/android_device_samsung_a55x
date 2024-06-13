@@ -2,7 +2,8 @@ on init
     write /proc/sys/kernel/hung_task_timeout_secs 0
 
     start watchdogd
-
+    start boot-hal-1-2
+    
 on late-init
     setprop sys.usb.controller 13200000.dwc
     setprop ro.debuggable 1
