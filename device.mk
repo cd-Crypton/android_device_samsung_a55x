@@ -15,24 +15,24 @@ AB_OTA_UPDATER := true
 TARGET_ENFORCE_AB_OTA_PARTITION_LIST := true
 
 PRODUCT_PACKAGES += \
-android.hardware.boot@1.2-impl \ 
-android.hardware.boot@1.2-impl.recovery \ 
-android.hardware.boot@1.2-service  
+android.hardware.boot@1.2-impl \
+android.hardware.boot@1.2-impl.recovery \
+android.hardware.boot@1.2-service
 
-AB_OTA_POSTINSTALL_CONFIG += \ 
-RUN_POSTINSTALL_system=true \ 
-POSTINSTALL_PATH_system=bin/checkpoint_gc \ 
-FILESYSTEM_TYPE_system=erofs \ 
-POSTINSTALL_OPTIONAL_system=true 
+AB_OTA_POSTINSTALL_CONFIG += \
+RUN_POSTINSTALL_system=true \
+POSTINSTALL_PATH_system=bin/checkpoint_gc \
+FILESYSTEM_TYPE_system=erofs \
+POSTINSTALL_OPTIONAL_system=true
 
-AB_OTA_POSTINSTALL_CONFIG += \ 
-RUN_POSTINSTALL_vendor=true \ 
-POSTINSTALL_PATH_vendor=bin/checkpoint_gc \ 
-FILESYSTEM_TYPE_vendor=erofs \ 
-POSTINSTALL_OPTIONAL_vendor=true 
+AB_OTA_POSTINSTALL_CONFIG += \
+RUN_POSTINSTALL_vendor=true \
+POSTINSTALL_PATH_vendor=bin/checkpoint_gc \
+FILESYSTEM_TYPE_vendor=erofs \
+POSTINSTALL_OPTIONAL_vendor=true
 
-# fastbootd PRODUCT_PACKAGES += \ 
-android.hardware.fastboot@1.1-impl-mock \ 
+PRODUCT_PACKAGES += \
+android.hardware.fastboot@1.1-impl-mock \
 fastbootd 
 
 PRODUCT_PACKAGES += \
