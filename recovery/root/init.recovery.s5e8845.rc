@@ -2,7 +2,6 @@ on init
     write /proc/sys/kernel/hung_task_timeout_secs 0
 
     start watchdogd
-    start boot-hal-1-2
     
 on late-init
     setprop sys.usb.controller 13200000.dwc
@@ -12,9 +11,17 @@ on late-init
     setprop sys.usb.config adb
 
 on boot
+    start vendor.boot-default
+    start boot-hal-1-2-exynos
 
 # Set watchdog timer to 30 seconds and fed it every 10 seconds to get a 20 second margin
 service watchdogd /system/bin/watchdogd 10 20
     class core
     oneshot
     seclabel u:r:watchdogd:s0
+
+service vendor.boot-default /system/bin/android.hardware.boot-service.exynos 
+    class early_hal 
+    user root 
+    group root 
+    seclabel u:r:recovery:s0
