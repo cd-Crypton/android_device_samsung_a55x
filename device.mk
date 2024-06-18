@@ -38,7 +38,7 @@ fastbootd
 PRODUCT_PACKAGES += \
     bootctrl.erd8845
 
-PRODUCT_STATIC_BOOT_CONTROL_HAL := \
+#PRODUCT_STATIC_BOOT_CONTROL_HAL := \
     bootctrl.erd8845 \
     libgptutils \
     libz \
