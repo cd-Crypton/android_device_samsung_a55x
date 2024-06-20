@@ -30,7 +30,7 @@ AB_OTA_PARTITIONS += \
     system \
     product
 BOARD_USES_RECOVERY_AS_BOOT := false
-TARGET_NO_RECOVERY := false
+#TARGET_NO_RECOVERY := false
 
 # Architecture
 TARGET_IS_64_BIT := true
