@@ -11,3 +11,5 @@ ro.crypto.volume.metadata.method=dm-default-key
 ro.recovery.usb.adb.pid=D001
 ro.recovery.usb.fastboot.pid=4EE0
 ro.recovery.usb.vid=18D1
+vendor.usb.use_ffs_mtp=1
+persist.sys.usb.config=mtp,adb

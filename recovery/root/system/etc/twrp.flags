@@ -1,37 +1,22 @@
-# Android fstab file.
-# The filesystem that contains the filesystem checker binary (typically /system) cannot
-# specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
+# Physical Partitions
+/boot           emmc  /dev/block/by-name/boot                       flags=display="Boot";slotselect;backup=1;flashimg
+/init_boot      emmc  /dev/block/by-name/init_boot                  flags=display="Init Boot";slotselect;backup=1;flashimg
+/vendor_boot    emmc  /dev/block/by-name/vendor_boot                flags=display="Vendor Boot";slotselect;backup=1;flashimg
+/dtbo           emmc  /dev/block/by-name/dtbo                       flags=display="DTBO";slotselect;backup=1;flashimg
+/vbmeta         emmc  /dev/block/by-name/vbmeta                     flags=display="vbmeta";slotselect;backup=1;flashimg
+/vbmeta_system  emmc  /dev/block/by-name/vbmeta_system              flags=display="vbmeta system";slotselect;backup=1;flashimg
+/mnt/vendor/efs ext4  /dev/block/by-name/efs                        flags=display="EFS";slotselect;backup=1
+/slotinfo       emmc  /dev/block/by-name/slotinfo                   flags=display="Slotinfo";backup=1
 
-# mount point          fstype  device                                        device2              flags
+#CSC
+/prism          ext4  /dev/block/by-name/prism                      flags=display="Prism";slotselect;backup=1;flashimg
+/optics         ext4  /dev/block/by-name/optics                     flags=display="Optics";slotselect;backup=1;flashimg
 
-# Boot
-/boot                  emmc    /dev/block/by-name/boot                                 flags=display="Boot";backup=1;slotselect;flashimg=1
-/init_boot             emmc    /dev/block/by-name/init_boot                            flags=display="Init_Boot";slotselect;backup=1;flashimg=1
-/vendor_boot           emmc    /dev/block/by-name/vendor_boot                          flags=display="Vendor_Boot";slotselect;backup=1;flashimg=1
-/recovery              emmc    /dev/block/by-name/recovery                             flags=display="Recovery";slotselect;backup=1;flashimg=1
+#Data
+/cache          ext4  /dev/block/by-name/cache	                    flags=display="Cache";backup=1
+/metadata       f2fs  /dev/block/by-name/metadata                   flags=display="Metadata";backup=1
+/data           f2fs  /dev/block/by-name/userdata                   flags=display="Data";backup=1
 
-# Data/Metadata
-/metadata              f2fs    /dev/block/by-name/metadata                             flags=display="Metadata";backup=1;wrappedkey
-
-# Other partitions
-/cache                 ext4    /dev/block/by-name/cache                               flags=display="Cache";wipeingui;wipeduringfactoryreset
-/misc                  emmc    /dev/block/by-name/misc
-
-# VBMeta/AVB partitions
-/dtbo                  emmc    /dev/block/by-name/dtbo                                 flags=display="DTBO";backup=1;slotselect;flashimg=1
-/vbmeta                emmc    /dev/block/by-name/vbmeta                               flags=display="VBMeta";backup=1;backup=1;slotselect;flashimg=1
-/vbmeta_system         emmc    /dev/block/by-name/vbmeta_system                        flags=display="VBMeta_System";backup=1;slotselect;flashimg=1
-
-# Persistent Firmware & Properties
-/persist               ext4    /dev/block/by-name/persist                              flags=display="Persist"
-/persist_image         emmc    /dev/block/by-name/persist                              flags=display="Persist";flashimg=1;backup=1
-
-# EFS partitions
-/efs1                  emmc    /dev/block/by-name/efs                             flags=display="EFS";backup=1;
-/efs2                  emmc    /dev/block/by-name/cpefs                             flags=backup=1;subpartitionof=/efs1
-
-# Removable storage
-/storage       	       auto    /data/media/0                  		                          flags=display="Internal Storage";backup=1;usermrf;fsflags="bind";removable
-/usb_otg               auto    /dev/block/sdg1                            /dev/block/sdg          flags=display="USB-Storage";fsflags=utf8;storage;wipeingui;removable
-/sdcard1               auto    /dev/block/mmcblk1p1                       /dev/block/mmcblk1      flags=display="MicroSD";storage;wipeingui;removable
-#
+# External Stuff
+/external_sd        vfat         /dev/block/mmcblk0p1 /dev/block/mmcblk0   flags=display="External SDCard";storage;wipeingui;removable;
+/usb-otg            vfat         /dev/block/sdb /dev/block/sdc            flags=display="USB OTG";storage;wipeingui;removable;
