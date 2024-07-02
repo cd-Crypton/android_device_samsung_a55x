@@ -7,6 +7,7 @@
 
 LOCAL_PATH := $(call my-dir)
 
+# Include only when TARGE_DEVICE is a55x
 ifeq ($(TARGET_DEVICE),a55x)
 include $(call all-subdir-makefiles,$(LOCAL_PATH))
 endif
