@@ -153,7 +153,9 @@ jobs:
     - name: Upload to Release
       uses: softprops/action-gh-release@v2
       with:
-        files: twrp-vendor_boot.tar
+        files: |
+          twrp-vendor_boot.tar
+          twrp/out/target/product/a55x/obj/PACKAGING/vendor_ramdisk_fragments_intermediates/recovery.cpio.lz4
         name: TWRP Release Build for Samsung Galaxy Tab A55 5G (a55x) // ${{ env.BUILD_DATE }}
         tag_name: ${{ github.run_id }}-patched
         body_path: changelog.txt
