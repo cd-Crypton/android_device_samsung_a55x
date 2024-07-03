@@ -163,7 +163,7 @@ TW_INCLUDE_NTFS_3G := true
 TW_LOAD_VENDOR_BOOT_MODULES := true
 
 # TWRP Configuration - Version
-TW_DEVICE_VERSION := TND B003
+include $(DEVICE_PATH)/version.mk
 
 # Workaround for copyout error
 TARGET_COPY_OUT_VENDOR := vendor
