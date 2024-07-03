@@ -19,4 +19,4 @@
 
 # External Stuff
 /external_sd        vfat         /dev/block/mmcblk0p1 /dev/block/mmcblk0   flags=display="External SDCard";storage;wipeingui;removable;
-/usb-otg            vfat         /dev/block/sdb /dev/block/sdc            flags=display="USB OTG";storage;wipeingui;removable;
+/usb-otg            vfat         /dev/block/sdf /dev/block/sdf1            flags=display="USB OTG";storage;wipeingui;removable;
