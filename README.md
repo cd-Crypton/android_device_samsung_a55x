@@ -1,8 +1,13 @@
-# Android device tree for samsung SM-A556B (a55x)
-# Clone
-    git clone https://github.com/MrFluffyOven/android_device_samsung_a55x.git -b twrp-12.1 device/samsung/a55x
-# Build
-    export ALLOW_MISSING_DEPENDENCIES=true; . build/envsetup.sh; lunch twrp_a55x-eng; mka vendorbootimage
+## Samsung Galaxy A55 5G SM-A556B (a55x)
+For unofficial TWRP build release, go to [release section](https://github.com/cd-Crypton/custom_recovery_tree_samsung_a55x/releases).
 
-## Credits
-- [cd-Crypton](https://github.com/cd-Crypton)
+## Flash Steps
+Assuming you know the basic of flashing...
+* Via ODIN
+    * Download `twrp-vendor_boot.tar` file in the release.
+    * In ODIN, in AP section, flash the file you downloaded in release section.
+    * Reboot now to Recovery.
+* Via FastbootD
+    * Download `recovery.cpio.lz4` file in the release.
+    * Reboot your device to fastbootd, and in command line, type: `fastboot flash vendor_boot:recovery recovery.cpio.lz4`
+    * Run: `fastboot reboot recovery`
