@@ -65,7 +65,7 @@ jobs:
       
     - name: Clone Device Tree
       run: |
-        cd twrp; git clone https://github.com/cd-Crypton/android_device_samsung_a55x -b twrp-12.1 ./device/samsung/a55x
+        cd twrp; git clone https://github.com/cd-Crypton/custom_recovery_tree_samsung_a55x -b twrp-12.1 ./device/samsung/a55x
         cd device/samsung/a55x
         echo "COMMIT_ID=$(git rev-parse HEAD)" >> $GITHUB_ENV
         echo "VERSION=$(cat version.mk | grep '^TW_DEVICE_VERSION' | awk '{print $3}')" >> $GITHUB_ENV
@@ -129,7 +129,7 @@ jobs:
         _Note: Flash at your own risk. This build were still in the process of testing._
         ### Resources
         * [TWRP Manifest](https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp/tree/twrp-12.1)
-        * [Device Tree](https://github.com/cd-Crypton/android_device_samsung_a55x/tree/twrp-12.1)
+        * [Device Tree](https://github.com/cd-Crypton/custom_recovery_tree_samsung_a55x/tree/twrp-12.1)
         
         Build Device: a55x
         Build Date: ${{ env.BUILD_DATE }}
@@ -143,11 +143,11 @@ jobs:
 
         ### What's new?
         * To be edited...
-        * [Full Changelog](https://github.com/cd-Crypton/android_device_samsung_a55x/compare/${{ env.COMMIT_ID2 }}...${{ env.COMMIT_ID }})
+        * [Full Changelog](https://github.com/cd-Crypton/custom_recovery_tree_samsung_a55x/compare/${{ env.COMMIT_ID2 }}...${{ env.COMMIT_ID }})
 
         ### Trigger Event
-        _This build were compiled by triggering branch twrp-12.1 of current tree, triggered by a push event in [version makefile](https://github.com/cd-Crypton/android_device_samsung_a55x/blob/twrp-12.1/version.mk)._
-        * [Last Commit](https://github.com/cd-Crypton/android_device_samsung_a55x/commit/${{ env.COMMIT_ID }})
+        _This build were compiled by triggering branch twrp-12.1 of current tree, triggered by a push event in [version makefile](https://github.com/cd-Crypton/custom_recovery_tree_samsung_a55x/blob/twrp-12.1/version.mk)._
+        * [Last Commit](https://github.com/cd-Crypton/custom_recovery_tree_samsung_a55x/commit/${{ env.COMMIT_ID }})
         " > changelog.txt
 
     - name: Upload to Release
