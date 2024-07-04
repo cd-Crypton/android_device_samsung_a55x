@@ -14,8 +14,6 @@
 
 #Data
 /cache          ext4  /dev/block/by-name/cache	                    flags=display="Cache";backup=1
-/metadata       f2fs  /dev/block/by-name/metadata                   flags=display="Metadata";backup=1
-/data           f2fs  /dev/block/by-name/userdata                   flags=display="Data";backup=1
 
 # External Stuff
 /external_sd        vfat         /dev/block/mmcblk0p1 /dev/block/mmcblk0   flags=display="External SDCard";storage;wipeingui;removable;
