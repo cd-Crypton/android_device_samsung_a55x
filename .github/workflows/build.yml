@@ -74,52 +74,13 @@ jobs:
     - name: Building Image 
       run: |
         cd twrp; source build/envsetup.sh; export ALLOW_MISSING_DEPENDENCIES=true
-        lunch twrp_a55x-eng; make clean; make vendorbootimage -j$(nproc --all)
+        lunch twrp_a55x-eng; mka vendorbootimage
+        cd out/target/product/a55x
+        tar -cvf twrp-vendor_boot.tar vendor_boot.img
       
     - name: Set Build Date # Output will be use in Release
       run: |
         echo "BUILD_DATE=$(date +%Y%m%d)" >> $GITHUB_ENV
-
-    - name: Prepare magiskboot
-      run: |
-        wget https://github.com/TeamWin/external_magisk-prebuilt/raw/android-12.1/prebuilt/magiskboot_x86_64
-        mv magiskboot_x86_64 magiskboot
-        chmod a+x magiskboot
-
-    - name: Prepare workspace
-      run: |
-        mkdir workspace
-        mkdir -p workspace/stock/unpack
-        mkdir -p workspace/twrp/unpack
-
-    - name: Download a copy of vendor_boot.img (stock)
-      run: |
-        wget https://gitlab.com/thenoobdevs2024/android_dump_samsung_a55x/-/raw/UP1A.231005.007/vendor_boot.img
-        mv vendor_boot.img workspace/stock/stock-vb.img
-
-    - name: Make a copy of vendor_boot.img (twrp)
-      run: |
-        cp twrp/out/target/product/a55x/vendor_boot.img workspace/twrp/twrp-vb.img
-
-    - name: Unpack vendor_boot.img (stock)
-      run: |
-        cd ${GITHUB_WORKSPACE}/workspace/stock/unpack
-        ${GITHUB_WORKSPACE}/magiskboot unpack ../stock-vb.img
-        
-    - name: Unpack vendor_boot.img (twrp)
-      run: |
-        cd ${GITHUB_WORKSPACE}/workspace/twrp/unpack
-        ${GITHUB_WORKSPACE}/magiskboot unpack ../twrp-vb.img
-
-    - name: Replace vendor_ramdisk_recovery.cpio (twrp > stock)
-      run: |
-        cd ${GITHUB_WORKSPACE}/workspace
-        mv twrp/unpack/vendor_ramdisk_recovery.cpio stock/unpack
-        cd ${GITHUB_WORKSPACE}/workspace/stock/unpack
-        ${GITHUB_WORKSPACE}/magiskboot repack ${GITHUB_WORKSPACE}/workspace/stock/stock-vb.img new-vendor_boot.img
-        mv new-vendor_boot.img ${GITHUB_WORKSPACE}/vendor_boot.img
-        cd ${GITHUB_WORKSPACE}
-        tar -cvf twrp-vendor_boot.tar vendor_boot.img
     
     - name: Set Body
       run: |
@@ -139,7 +100,7 @@ jobs:
         Custom Version: ${{ env.VERSION }}
 
         ### Notes
-        This twrp-vendor_boot.tar can be flash via ODIN software. This was build using a55x twrp's vendor_boot.img and stock vendor_boot.img, by replacing stock's vendor_ramdisk_recovery.cpio using vendor_ramdisk_recovery.cpio from TWRP build.
+        This twrp-vendor_boot.tar can be flash via ODIN software.
 
         ### What's new?
         * To be edited...
@@ -154,7 +115,7 @@ jobs:
       uses: softprops/action-gh-release@v2
       with:
         files: |
-          twrp-vendor_boot.tar
+          twrp/out/target/product/a55x/twrp-vendor_boot.tar
           twrp/out/target/product/a55x/obj/PACKAGING/vendor_ramdisk_fragments_intermediates/recovery.cpio.lz4
         name: TWRP Release Build for Samsung Galaxy Tab A55 5G (a55x) // ${{ env.BUILD_DATE }}
         tag_name: ${{ github.run_id }}-patched
