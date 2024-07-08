@@ -118,5 +118,5 @@ jobs:
           twrp/out/target/product/a55x/twrp-vendor_boot.tar
           twrp/out/target/product/a55x/obj/PACKAGING/vendor_ramdisk_fragments_intermediates/recovery.cpio.lz4
         name: TWRP Release Build for Samsung Galaxy A55 5G (a55x) // ${{ env.BUILD_DATE }}
-        tag_name: ${{ github.run_id }}-patched
+        tag_name: A55X-${{ env.VERSION }}
         body_path: changelog.txt
