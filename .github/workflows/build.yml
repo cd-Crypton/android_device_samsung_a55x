@@ -117,6 +117,6 @@ jobs:
         files: |
           twrp/out/target/product/a55x/twrp-vendor_boot.tar
           twrp/out/target/product/a55x/obj/PACKAGING/vendor_ramdisk_fragments_intermediates/recovery.cpio.lz4
-        name: TWRP Release Build for Samsung Galaxy Tab A55 5G (a55x) // ${{ env.BUILD_DATE }}
+        name: TWRP Release Build for Samsung Galaxy A55 5G (a55x) // ${{ env.BUILD_DATE }}
         tag_name: ${{ github.run_id }}-patched
         body_path: changelog.txt
