@@ -11,6 +11,8 @@ vendor_dlkm	/vendor_dlkm	erofs	ro	slotselect,wait,logical,first_stage_mount
 system_dlkm	/system_dlkm	erofs	ro	slotselect,wait,logical,first_stage_mount
 system_dlkm	/system_dlkm	f2fs	ro	slotselect,wait,logical,first_stage_mount
 system_dlkm	/system_dlkm	ext4	ro	slotselect,wait,logical,first_stage_mount
+product     /product        erofs	ro	slotselect,wait,logical,first_stage_mount,avb
+odm         /odm            erofs	ro	slotselect,wait,logical,first_stage_mount,avb
 
 # Data
 /dev/block/by-name/metadata	/metadata	f2fs	noatime,nosuid,nodev,discard,sync,fsync_mode=strict,data_flush	wait,formattable,first_stage_mount,check
