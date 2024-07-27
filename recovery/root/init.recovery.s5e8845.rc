@@ -34,11 +34,3 @@ service gatekeeper /system/bin/hw/android.hardware.gatekeeper-service
     setenv LD_LIBRARY_PATH /vendor/lib64:/vendor/lib:/system/lib64:/system/lib:/sbin
     disabled
     seclabel u:r:recovery:s0
-
-service health /vendor/bin/hw/vendor.samsung.hardware.health-service
-    class hal
-    user root
-    group root
-    capabilities WAKE_ALARM BLOCK_SUSPEND
-    file /dev/kmsg w
-    seclabel u:r:recovery:s0
