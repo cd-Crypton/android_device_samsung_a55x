@@ -1,18 +1,17 @@
 import /init.recovery.samsung.rc
+import /init.recovery.teegris.rc
 
 on init
     start watchdogd
     write /proc/sys/kernel/hung_task_timeout_secs 0
-# Props
     setprop service.adb.root 1
-    
+
+on fs
+    wait /dev/block/platform/${ro.boot.boot_devices}
+    symlink /dev/block/platform/${ro.boot.boot_devices} /dev/block/bootdevice
+
 on boot
     start health-hal-2-1
-    start fkeymaster
-    start gatekeeper
-
-on post-fs-data
-    mkdir /data/vendor/gatekeeper 0770 root root
 
 # Set watchdog timer to 30 seconds and fed it every 10 seconds to get a 20 second margin
 service watchdogd /system/bin/watchdogd 10 20
@@ -20,7 +19,7 @@ service watchdogd /system/bin/watchdogd 10 20
     oneshot
     seclabel u:r:watchdogd:s0
 
-service fkeymaster /system/bin/vendor.samsung.hardware.security.fkeymaster-service
+service vendor.fkeymaster-default /vendor/bin/hw/vendor.samsung.hardware.security.fkeymaster-service
     interface aidl vendor.samsung.hardware.security.fkeymaster.ISehFkeymaster/default
     user root
     group root
@@ -28,17 +27,16 @@ service fkeymaster /system/bin/vendor.samsung.hardware.security.fkeymaster-servi
     disabled
     seclabel u:r:recovery:s0
 
-service gatekeeper /system/bin/hw/android.hardware.gatekeeper-service
+service vendor.gatekeeper-default /vendor/bin/hw/android.hardware.gatekeeper-service
     user root
     group root 5678
     setenv LD_LIBRARY_PATH /vendor/lib64:/vendor/lib:/system/lib64:/system/lib:/sbin
     disabled
     seclabel u:r:recovery:s0
 
-service health /vendor/bin/hw/vendor.samsung.hardware.health-service
-    class hal
+service vendor.keymint-default /vendor/bin/hw/android.hardware.security.keymint-service
     user root
-    group root
-    capabilities WAKE_ALARM BLOCK_SUSPEND
-    file /dev/kmsg w
+    group root drmrpc
+    setenv LD_LIBRARY_PATH /vendor/lib64:/vendor/lib:/system/lib64:/system/lib:/sbin
+    disabled
     seclabel u:r:recovery:s0
