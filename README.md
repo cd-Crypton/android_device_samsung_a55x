@@ -1,5 +1,5 @@
 ## Samsung Galaxy A55 5G SM-A556B (a55x)
-For unofficial TWRP build release, go to [release - version A55X-TND_B003.5](https://github.com/cd-Crypton/custom_recovery_tree_samsung_a55x/releases/tag/A55X-TND_B003.5).
+For unofficial TWRP build release, go to [release - version A55X-TND_B004](https://github.com/cd-Crypton/custom_recovery_tree_samsung_a55x/releases/tag/A55X-TND_B004).
 
 ## Flash Steps
 Assuming you know the basic of flashing...
