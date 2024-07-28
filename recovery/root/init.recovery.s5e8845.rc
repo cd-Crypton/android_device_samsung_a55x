@@ -1,5 +1,10 @@
 import /init.recovery.samsung.rc
 
+on early-init
+    mkdir /mnt/vendor/efs 0771 radio system
+    setprop crypto.ready 1
+    setprop ro.crypto.type file
+
 on init
     write /proc/sys/kernel/hung_task_timeout_secs 0
 

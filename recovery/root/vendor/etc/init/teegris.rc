@@ -1,6 +1,7 @@
 # TEEGRIS service
-on post-fs
+on fs
     mkdir /mnt/vendor/efs/tee 0700 system system
+    mount ext4 /dev/block/by-name/efs /mnt/vendor/efs nosuid nodev noatime
     mkdir /dev/socket/iwt 0770 system system
     mkdir /dev/socket/iwt/ca 0770 system system
 
@@ -16,17 +17,15 @@ on post-fs-data
     mkdir /data/vendor/tee 0700 system system
 
 service tz_service /vendor/bin/tzdaemon
-    class core
-    user root
-    group root readproc
+    user system
+    group system readproc
     setenv LD_LIBRARY_PATH /vendor/lib64:/vendor/lib:/system/lib64:/system/lib:/sbin
     disabled
     seclabel u:r:recovery:s0
 
 service tzts_service /vendor/bin/tzts_daemon
-    class core
-    user root
-    group root
+    user system
+    group system
     setenv LD_LIBRARY_PATH /vendor/lib64:/vendor/lib:/system/lib64:/system/lib:/sbin
     disabled
     seclabel u:r:recovery:s0
