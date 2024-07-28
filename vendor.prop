@@ -7,6 +7,9 @@ ro.crypto.allow_encrypt_override=true
 ro.crypto.dm_default_key.options_format.version=2
 ro.crypto.volume.metadata.method=dm-default-key
 
+# Keymaster Version
+keymaster_ver=4.0
+
 # USB
 vendor.usb.use_ffs_mtp=1
 persist.sys.usb.config=mtp,adb
