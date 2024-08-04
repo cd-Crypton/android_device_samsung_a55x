@@ -30,7 +30,10 @@ AB_OTA_POSTINSTALL_CONFIG += \
 
 PRODUCT_PACKAGES += \
     android.hardware.fastboot@1.0-impl-mock \
-    fastbootd
+    fastbootd 
+
+PRODUCT_PACKAGES += \
+    bootctrl.erd8845
 
 PRODUCT_PACKAGES += \
     otapreopt_script \

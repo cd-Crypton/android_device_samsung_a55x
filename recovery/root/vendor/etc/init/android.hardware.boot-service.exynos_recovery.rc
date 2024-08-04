@@ -1,0 +1,7 @@
+service vendor.boot-default /system/bin/hw/android.hardware.boot-service.exynos_recovery
+    interface aidl android.hardware.boot.IBootControl/default
+    user root
+    group root
+    setenv LD_LIBRARY_PATH /vendor/lib64:/vendor/lib:/system/lib64:/system/lib:/sbin
+    disabled
+    seclabel u:r:recovery:s0
