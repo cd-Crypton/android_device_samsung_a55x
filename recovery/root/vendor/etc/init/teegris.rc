@@ -1,10 +1,11 @@
 # TEEGRIS service
-on post-fs
-    mkdir /mnt/vendor/efs/tee 0700 system system
-    mkdir /dev/socket/iwt 0770 system system
-    mkdir /dev/socket/iwt/ca 0770 system system
+on fs
+    mkdir /mnt/vendor/efs/tee 0700 root root
+    mount ext4 /dev/block/by-name/efs /mnt/vendor/efs nosuid nodev noatime
+    mkdir /dev/socket/iwt 0770 root root
+    mkdir /dev/socket/iwt/ca 0770 root root
 
-on property:hwservicemanager.ready=true && property:crypto.ready=1
+on property:hwservicemanager.ready=true
     start tz_service
     wait_for_prop vendor.tzdaemon Ready
     setprop vendor.TEEGRIS.loaded true
@@ -13,7 +14,7 @@ on property:hwservicemanager.ready=true && property:crypto.ready=1
     wait_for_prop vendor.tzts_daemon Ready
 
 on post-fs-data
-    mkdir /data/vendor/tee 0700 system system
+    mkdir /data/vendor/tee 0700 root root
 
 service tz_service /vendor/bin/tzdaemon
     user root
