@@ -8,7 +8,7 @@ ro.crypto.dm_default_key.options_format.version=2
 ro.crypto.volume.metadata.method=dm-default-key
 
 # Keymaster Version
-keymaster_ver=4.0
+keymaster_ver=4.1
 
 # USB
 vendor.usb.use_ffs_mtp=1

@@ -27,9 +27,6 @@ PRODUCT_PACKAGES += \
     fastbootd 
 
 PRODUCT_PACKAGES += \
-    bootctrl.erd8845
-
-PRODUCT_PACKAGES += \
     otapreopt_script \
     cppreopts.sh \
     update_engine \
