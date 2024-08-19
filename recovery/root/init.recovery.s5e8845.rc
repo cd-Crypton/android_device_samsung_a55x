@@ -6,7 +6,7 @@ on early-init
 
 on init
     write /proc/sys/kernel/hung_task_timeout_secs 0
-    start boot-hal-2-1
+    start boot-hal-1-2
 
 on boot
     start health-hal-2-1
