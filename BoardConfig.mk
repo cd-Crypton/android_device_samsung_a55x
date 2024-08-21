@@ -85,7 +85,7 @@ BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_RAMDISK_OFFSET := 0x00000000
 BOARD_KERNEL_TAGS_OFFSET := 0x00000000
-BOARD_BOOTCONFIG += androidboot.serialconsole=0 loop.max_part=7
+BOARD_BOOTCONFIG += buildtime_bootconfig=enable androidboot.serialconsole=0
 BOARD_KERNEL_CMDLINE += bootconfig
 
 # Kernel - MKBOOTIMGS Args
