@@ -3,3 +3,13 @@ on init
     rm /efs
     mkdir /efs
     mkdir /sec_efs
+
+on post-fs
+    mkdir /mnt/vendor/efs/DAK 0775 system system
+    restorecon -R /mnt/vendor/efs/DAK
+    chown system system /mnt/vendor/efs/DAK/gakkeybox
+    chmod 0644 /mnt/vendor/efs/DAK/gakkeybox
+
+on post-fs-data
+    mkdir /data/vendor/keymaster 0775 system system
+    mkdir /data/vendor/gatekeeper 0770 system system
