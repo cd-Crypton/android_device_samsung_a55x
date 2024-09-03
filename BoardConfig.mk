@@ -170,7 +170,7 @@ TW_INCLUDE_LIBRESETPROP := true
 TW_LOAD_VENDOR_BOOT_MODULES := true
 
 # TWRP Configuration - Version
-include $(DEVICE_PATH)/version.mk
+TW_DEVICE_VERSION := TND_B004
 
 # Workaround for copyout error
 TARGET_COPY_OUT_VENDOR := vendor
