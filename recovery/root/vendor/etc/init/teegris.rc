@@ -5,6 +5,14 @@ on fs
     mkdir /dev/socket/iwt 0770 root root
     mkdir /dev/socket/iwt/ca 0770 root root
 
+on property:vendor.sys.listener.registered=true
+    start tz_service
+    wait_for_prop vendor.tzdaemon Ready
+    setprop vendor.TEEGRIS.loaded true
+    write /proc/iccc_ready 1
+    start tzts_service
+    wait_for_prop vendor.tzts_daemon Ready
+
 on property:hwservicemanager.ready=true
     start tz_service
     wait_for_prop vendor.tzdaemon Ready
@@ -19,13 +27,11 @@ on post-fs-data
 service tz_service /vendor/bin/tzdaemon
     user root
     group root readproc
-    setenv LD_LIBRARY_PATH /vendor/lib64:/vendor/lib:/system/lib64:/system/lib:/sbin
     disabled
     seclabel u:r:recovery:s0
 
 service tzts_service /vendor/bin/tzts_daemon
     user root
     group root
-    setenv LD_LIBRARY_PATH /vendor/lib64:/vendor/lib:/system/lib64:/system/lib:/sbin
     disabled
     seclabel u:r:recovery:s0

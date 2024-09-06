@@ -6,27 +6,51 @@ on early-init
 
 on init
     write /proc/sys/kernel/hung_task_timeout_secs 0
+    export LD_LIBRARY_PATH /system/lib64:/vendor/lib64:/vendor/lib64/hw:/system/lib64/hw
     start boot-hal-1-2
 
 on boot
     start health-hal-2-1
 
-on fs
-    wait /dev/block/platform/bootdevice
-    symlink /dev/block/platform/bootdevice /dev/block/bootdevice
-
 on property:ro.crypto.state=encrypted && property:ro.crypto.type=file
     install_keyring
 
-on property:hwservicemanager.ready=true && property:vendor.sys.listener.registered=true
+service keystore_auth /system/bin/keystore_auth
+    oneshot
+    user system
+    group root
+    disabled
+    seclabel u:r:recovery:s0
+
+service keystore /system/bin/keystore /tmp/misc/keystore
+    user root
+    group root drmrpc readproc
+    disabled
+    seclabel u:r:recovery:s0
+
+on property:vendor.sys.listener.registered=true
     start vendor.keymint-default
     start vendor.gatekeeper-default
 
-on property:hwservicemanager.ready=true && property:ro.crypto.type=file
+on property:hwservicemanager.ready=true
     start vendor.keymint-default
     start vendor.gatekeeper-default
    
-on property:twrp.decrypt.done=true && property:twrp.all.users.decrypted=true
+on property:twrp.decrypt.done=true
+    stop tz_service
+    stop tzts_service
+    stop sem_daemon
+    stop vendor.keymint-default
+    stop vendor.gatekeeper-default
+
+on property:twrp.all.users.decrypted=true
+    stop tz_service
+    stop tzts_service
+    stop sem_daemon
+    stop vendor.keymint-default
+    stop vendor.gatekeeper-default
+
+on property:ro.crypto.state=unsupported
     stop tz_service
     stop tzts_service
     stop sem_daemon
