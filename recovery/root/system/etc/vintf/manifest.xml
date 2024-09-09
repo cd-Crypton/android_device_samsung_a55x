@@ -4,7 +4,7 @@
         vendor/samsung/frameworks/interfaces/security/ucm/crypto/1.0/manifest.xml
 -->
 <manifest version="2.0" type="framework">
-    <hal format="hidl" max-level="6">
+    <hal format="hidl">
         <name>android.frameworks.displayservice</name>
         <transport>hwbinder</transport>
         <fqname>@1.0::IDisplayService/default</fqname>
