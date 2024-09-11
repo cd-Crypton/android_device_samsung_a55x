@@ -28,6 +28,5 @@ cc_library_static {
 		"lib_exbc.v1.defaults",
 	],
 	relative_install_path: "hw",
-	vendor: true,
 	recovery_available: true,
 }

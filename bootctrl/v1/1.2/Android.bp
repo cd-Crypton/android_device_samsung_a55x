@@ -25,7 +25,6 @@ cc_library_shared {
 	defaults: ["bootctrl@1.2.defaults"],
 
 	relative_install_path: "hw",
-	vendor: true,
 	recovery_available: true,
 
 	static_libs: [

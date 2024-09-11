@@ -2,7 +2,6 @@ cc_defaults {
 	name: "exynos_bootctrl_1.2_defaults",
 
 	relative_install_path: "hw",
-	vendor: true,
 	recovery_available: true,
 }
 

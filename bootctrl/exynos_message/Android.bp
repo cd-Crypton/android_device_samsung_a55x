@@ -26,6 +26,5 @@ cc_library_static {
 		"lib_exynos_message_defaults",
 	],
 	relative_install_path: "hw",
-	vendor: true,
 	recovery_available: true,
 }

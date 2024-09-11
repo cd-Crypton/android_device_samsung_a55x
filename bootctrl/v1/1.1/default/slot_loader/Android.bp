@@ -29,6 +29,5 @@ cc_library_static {
 		"exsl.v1_1.defaults.defaults",
 	],
 	relative_install_path: "hw",
-	vendor: true,
 	recovery_available: true,
 }
