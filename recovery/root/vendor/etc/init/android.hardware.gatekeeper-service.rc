@@ -1,8 +1,20 @@
-service vendor.gatekeeper-default /vendor/bin/hw/android.hardware.gatekeeper-service
+on property:hwservicemanager.ready=true && property:vendor.sys.listeners.registered=true
+    start gatekeeper-exynos
+
+service gatekeeper-exynos /vendor/bin/hw/android.hardware.gatekeeper-service
     user root
     group root 5678
     disabled
     seclabel u:r:recovery:s0
 
 on post-fs-data
-    mkdir /data/vendor/gatekeeper 0770 root root
+    mkdir /data/vendor/gatekeeper 0770 system system
+
+on property:twrp.decrypt.done=truen
+    stop gatekeeper-exynos
+
+on property:twrp.all.users.decrypted=true
+    stop gatekeeper-exynos
+
+on property:ro.crypto.state=unsupported
+    stop gatekeeper-exynos

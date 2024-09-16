@@ -1,11 +1,8 @@
-# TEEGRIS service
-on fs
-    mkdir /mnt/vendor/efs/tee 0700 root root
-    mount ext4 /dev/block/by-name/efs /mnt/vendor/efs nosuid nodev noatime
-    mkdir /dev/socket/iwt 0770 root root
-    mkdir /dev/socket/iwt/ca 0770 root root
-
 on post-fs
+# TEEGRIS service
+    mkdir /mnt/vendor/efs/tee 0700 system system
+    mkdir /dev/socket/iwt 0770 system system
+    mkdir /dev/socket/iwt/ca 0770 system system
     start tz_service
     wait_for_prop vendor.tzdaemon Ready
     setprop vendor.TEEGRIS.loaded true
@@ -14,16 +11,31 @@ on post-fs
     wait_for_prop vendor.tzts_daemon Ready
 
 on post-fs-data
-    mkdir /data/vendor/tee 0700 root root
+# TEEGRIS service
+    mkdir /data/vendor/tee 0700 system system
 
 service tz_service /vendor/bin/tzdaemon
     user root
     group root readproc
+    setenv LD_LIBRARY_PATH /vendor/lib64:/vendor/lib:/system/lib64:/system/lib:/sbin
     disabled
     seclabel u:r:recovery:s0
 
 service tzts_service /vendor/bin/tzts_daemon
     user root
     group root
+    setenv LD_LIBRARY_PATH /vendor/lib64:/vendor/lib:/system/lib64:/system/lib:/sbin
     disabled
     seclabel u:r:recovery:s0
+
+on property:twrp.decrypt.done=true
+    stop tz_service
+    stop tzts_service
+
+on property:twrp.all.users.decrypted=true
+    stop tz_service
+    stop tzts_service
+
+on property:ro.crypto.state=unsupported
+    stop tz_service
+    stop tzts_service

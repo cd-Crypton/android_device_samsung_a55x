@@ -3,10 +3,19 @@ service sem_daemon /system/bin/sem_daemon
     user root
     group root nfc
     oneshot
+    setenv LD_LIBRARY_PATH /vendor/lib64:/vendor/lib:/system/lib64:/system/lib:/sbin
     disabled
     seclabel u:r:recovery:s0
 
 on early-boot
-    mkdir /efs/sec_efs/esek 0775 root root
+    mkdir /efs/sec_efs/esek 0775 system system
     start sem_daemon
 
+on property:twrp.decrypt.done=true
+    stop sem_daemon
+
+on property:twrp.all.users.decrypted=true
+    stop sem_daemon
+
+on property:ro.crypto.state=unsupported
+    stop sem_daemon

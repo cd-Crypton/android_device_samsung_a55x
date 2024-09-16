@@ -1,7 +1,9 @@
 import /init.recovery.samsung.rc
 
 on early-init
-    mkdir /mnt/vendor/efs 0771 radio root
+    mkdir /mnt/vendor/efs 0771 radio system
+    mkdir /mnt/vendor/cpefs 0771 radio system
+    mkdir /mnt/vendor/persist 0771 system system
 
 on init
     write /proc/sys/kernel/hung_task_timeout_secs 0
@@ -26,32 +28,3 @@ service keystore /system/bin/keystore /tmp/misc/keystore
     group root drmrpc readproc
     disabled
     seclabel u:r:recovery:s0
-
-on property:vendor.sys.listener.registered=true
-    start vendor.keymint-default
-    start vendor.gatekeeper-default
-
-on property:hwservicemanager.ready=true
-    start vendor.keymint-default
-    start vendor.gatekeeper-default
-   
-on property:twrp.decrypt.done=true
-    stop tz_service
-    stop tzts_service
-    stop sem_daemon
-    stop vendor.keymint-default
-    stop vendor.gatekeeper-default
-
-on property:twrp.all.users.decrypted=true
-    stop tz_service
-    stop tzts_service
-    stop sem_daemon
-    stop vendor.keymint-default
-    stop vendor.gatekeeper-default
-
-on property:ro.crypto.state=unsupported
-    stop tz_service
-    stop tzts_service
-    stop sem_daemon
-    stop vendor.keymint-default
-    stop vendor.gatekeeper-default
