@@ -1,6 +1,3 @@
-on property:hwservicemanager.ready=true && property:vendor.sys.listeners.registered=true
-    start gatekeeper-exynos
-
 service gatekeeper-exynos /vendor/bin/hw/android.hardware.gatekeeper-service
     user root
     group root 5678
@@ -9,12 +6,3 @@ service gatekeeper-exynos /vendor/bin/hw/android.hardware.gatekeeper-service
 
 on post-fs-data
     mkdir /data/vendor/gatekeeper 0770 system system
-
-on property:twrp.decrypt.done=truen
-    stop gatekeeper-exynos
-
-on property:twrp.all.users.decrypted=true
-    stop gatekeeper-exynos
-
-on property:ro.crypto.state=unsupported
-    stop gatekeeper-exynos

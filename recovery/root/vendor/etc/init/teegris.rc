@@ -27,15 +27,3 @@ service tzts_service /vendor/bin/tzts_daemon
     setenv LD_LIBRARY_PATH /vendor/lib64:/vendor/lib:/system/lib64:/system/lib:/sbin
     disabled
     seclabel u:r:recovery:s0
-
-on property:twrp.decrypt.done=true
-    stop tz_service
-    stop tzts_service
-
-on property:twrp.all.users.decrypted=true
-    stop tz_service
-    stop tzts_service
-
-on property:ro.crypto.state=unsupported
-    stop tz_service
-    stop tzts_service

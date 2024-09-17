@@ -1,6 +1,3 @@
-on property:hwservicemanager.ready=true && property:vendor.sys.listeners.registered=true
-    start keymint-exynos
-
 service keymint-exynos /vendor/bin/hw/android.hardware.security.keymint-service
     user root
     group root drmrpc
@@ -16,12 +13,3 @@ on post-fs
 
 on post-fs-data
     mkdir /data/vendor/keymaster 0775 system system
-
-on property:twrp.decrypt.done=truen
-    stop keymint-exynos
-
-on property:twrp.all.users.decrypted=true
-    stop keymint-exynos
-
-on property:ro.crypto.state=unsupported
-    stop keymint-exynos

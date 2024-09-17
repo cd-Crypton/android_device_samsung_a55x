@@ -7,7 +7,7 @@ on early-init
 
 on init
     write /proc/sys/kernel/hung_task_timeout_secs 0
-    export LD_LIBRARY_PATH /system/lib64:/vendor/lib64:/vendor/lib64/hw:/system/lib64/hw
+    export LD_LIBRARY_PATH /vendor/lib64:/vendor/lib:/system/lib64:/system/lib:/sbin
     start boot-hal-1-2
 
 on boot
@@ -28,3 +28,32 @@ service keystore /system/bin/keystore /tmp/misc/keystore
     group root drmrpc readproc
     disabled
     seclabel u:r:recovery:s0
+
+on property:hwservicemanager.ready=true
+    start keymint-exynos
+    start gatekeeper-exynos
+
+on property:vendor.sys.listeners.registered=true
+    start keymint-exynos
+    start gatekeeper-exynos
+
+on property:twrp.decrypt.done=true
+    stop tz_service
+    stop tzts_service
+    stop sem_daemon
+    stop keymint-exynos
+    stop gatekeeper-exynos
+
+on property:twrp.all.users.decrypted=true
+    stop tz_service
+    stop tzts_service
+    stop sem_daemon
+    stop keymint-exynos
+    stop gatekeeper-exynos
+
+on property:ro.crypto.state=unsupported
+    stop tz_service
+    stop tzts_service
+    stop sem_daemon
+    stop keymint-exynos
+    stop gatekeeper-exynos
