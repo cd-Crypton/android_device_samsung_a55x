@@ -1,0 +1,6 @@
+service vaultkeeper_aidl /vendor/bin/vendor.samsung.hardware.security.vaultkeeper-service
+    user root
+    group root
+    setenv LD_LIBRARY_PATH /vendor/lib64:/vendor/lib:/system/lib64:/system/lib:/sbin
+    disabled
+    seclabel u:r:recovery:s0

@@ -32,10 +32,16 @@ service keystore /system/bin/keystore /tmp/misc/keystore
 on property:hwservicemanager.ready=true
     start keymint-exynos
     start gatekeeper-exynos
+    start vaultkeeper_aidl
+    start vaultkeeper
+    start vaultkeeper_hal
 
 on property:vendor.sys.listeners.registered=true
     start keymint-exynos
     start gatekeeper-exynos
+    start vaultkeeper_aidl
+    start vaultkeeper
+    start vaultkeeper_hal
 
 on property:twrp.decrypt.done=true
     stop tz_service
@@ -43,6 +49,9 @@ on property:twrp.decrypt.done=true
     stop sem_daemon
     stop keymint-exynos
     stop gatekeeper-exynos
+    stop vaultkeeper_aidl
+    stop vaultkeeper
+    stop vaultkeeper_hal
 
 on property:twrp.all.users.decrypted=true
     stop tz_service
@@ -50,6 +59,9 @@ on property:twrp.all.users.decrypted=true
     stop sem_daemon
     stop keymint-exynos
     stop gatekeeper-exynos
+    stop vaultkeeper_aidl
+    stop vaultkeeper
+    stop vaultkeeper_hal
 
 on property:ro.crypto.state=unsupported
     stop tz_service
@@ -57,3 +69,6 @@ on property:ro.crypto.state=unsupported
     stop sem_daemon
     stop keymint-exynos
     stop gatekeeper-exynos
+    stop vaultkeeper_aidl
+    stop vaultkeeper
+    stop vaultkeeper_hal
